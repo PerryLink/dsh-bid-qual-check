@@ -1,0 +1,226 @@
+# 投标人资格条件核对 规则库
+#
+# 规则数据与代码分离：替换本文件即可切换规则集版本，无需改动 TypeScript。
+#
+# 条款引用纪律（由 shared/ruleset.ts 强制校验）：
+#   - 每条规则必须写全 document / number / clause / excerpt / kind / source，
+#     且 excerpt 必须是逐字摘录，不得改写。
+#   - kind: direct                       条款直接规定了所检查的要求
+#   - kind: derived-from-principle       条款未直接规定，仅能由原则性条款推论（severity 最多 warn）
+#   - kind: institutional-configuration 阈值出自本机构配置（severity 最多 info）
+#
+# ⚠️⚠️ 本规则库的诚实说明：**excerpt 一律不是引文。**
+#   本插件核对的是"投标人资格条件核对表"的**逐条闭环**：
+#     每条资格条件是否填写要求内容、是否记录投标人实际情况、
+#     是否附证明材料、核对结论是否在册、否决项是否逐条核对、
+#     序号是否唯一、是否残留模板占位符。
+#   其规范载体是《中华人民共和国招标投标法》第十八条、第二十六条
+#   与《招标投标法实施条例》第三十四条等，以及**各项目招标文件的资格条件**。
+#   **核查未取得这些文件的逐字条文**，因此本规则库**不伪造任何"原文"**：
+#   每条规则的 excerpt 都写明"该条文本次未取得"，依据状态放在 note 里如实说明；
+#   kind 一律降为 derived-from-principle（封顶 warn）或 institutional-configuration（封顶 info）。
+#   **取得条文后必须做两件事**：把 excerpt 换成真正的逐字摘录，把 kind 升为 direct。
+#
+# ⚠️⚠️ 另一条**必须保留**的边界：**本插件绝不判定投标人是否具备资格、
+#   是否构成资格审查不合格、是否应当否决其投标**。
+#   那需要资格审查委员会依法定职权，结合证明材料原件与招标文件的具体条件作出判断。
+#   → 因此本插件只核对**核对表自身的齐备与自洽**：
+#     要求与实际情况是否填写、否决项是否逐条核对、证明材料是否附、结论是否在册、
+#     序号是否唯一、是否残留模板占位符。
+#   → **核对结论取值清单（verdicts）出厂为空**，未配置即进 skipped；
+#     **「是否否决项」的判定值（passFailValues）同样可配置**，因为"哪些条件属于否决项"
+#     完全取决于本项目招标文件。
+
+plugin: dsh-bid-qual-check
+version: "2026.1"
+
+rules:
+  - id: BQ-001
+    title: 每条资格条件都应填写要求内容
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第二十六条——投标人应当具备承担招标项目的能力；有规定的应当具备规定的资格条件
+      excerpt: 投标人应当具备承担招标项目的能力；国家有关规定对投标人资格条件或者招标文件对投标人资格条件有规定的，投标人应当具备规定的资格条件。
+      kind: direct
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: presenceAny
+        fields: [required, criterion]
+        fix: 补填资格条件与要求内容；本条只核对是否填写，不判断该条件是否应当设置
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ✅ kind 已升为 direct（2026-10-07）：第二十六条逐字要求投标人「应当具备承担招标项目的能力」及规定的资格条件。
+      "要求内容"是核对表的基准：没有它，后面的实际情况与结论都失去比对对象。
+      本次未取得明文条号，故封顶 warn。
+      本条只核对"至少填了一个"，**不判断该资格条件设置是否合法、是否构成不合理限制**——
+      那是招标文件合规性审查的事项，不是本插件的判断。
+
+  - id: BQ-002
+    title: 每条资格条件都应记录投标人实际情况
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第十八条第一款——招标人可要求潜在投标人提供资质证明文件和业绩情况并对其进行资格审查
+      excerpt: 招标人可以根据招标项目本身的要求，在招标公告或者投标邀请书中，要求潜在投标人提供有关资质证明文件和业绩情况，并对潜在投标人进行资格审查；国家对投标人的资格条件有规定的，依照其规定。招标人不得以不合理的条件限制或者排斥潜在投标人，不得对潜在投标人实行歧视待遇。
+      kind: direct
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: presence
+        field: actual
+        fix: 补填投标人实际情况；本条只核对是否记录，不判断是否满足要求
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ✅ kind 已升为 direct（2026-10-07）：第十八条第一款逐字要求提供「资质证明文件和业绩情况」并「进行资格审查」。
+      只写要求、不记实际情况的核对表，等于把判断留在了执行人的记忆里。
+      本次未取得明文条号，故封顶 warn。
+      本条只核对实际情况栏是否填写，**不判断该情况是否满足要求**——
+      那需要核验证明材料原件，是资格审查委员会的判断。
+
+  - id: BQ-003
+    title: 每条资格条件都应附证明材料
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第十八条第一款——资质证明文件和业绩情况
+      excerpt: 招标人可以根据招标项目本身的要求，在招标公告或者投标邀请书中，要求潜在投标人提供有关资质证明文件和业绩情况，并对潜在投标人进行资格审查；国家对投标人的资格条件有规定的，依照其规定。招标人不得以不合理的条件限制或者排斥潜在投标人，不得对潜在投标人实行歧视待遇。
+      kind: direct
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: presence
+        field: evidence
+        fix: 补填证明材料与页码；本条只核对是否附，不判断材料是否有效
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ✅ kind 已升为 direct（2026-10-07）：同第十八条第一款——「资质证明文件和业绩情况」即证明材料。
+      资格条件若无对应证明材料，核对就无法复核，也无法向其他投标人交代。
+      本次未取得明文条号，故封顶 warn。
+      本条只核对证明材料栏是否填写，**不判断该证明材料是否有效、是否过期、是否与原件一致**。
+
+  - id: BQ-004
+    title: 核对结论应使用本机构口径的取值
+    severity: info
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 关于资格审查结论的条款（本次未取得条号）
+      excerpt: 招标人可以根据招标项目本身的要求，在招标公告或者投标邀请书中，要求潜在投标人提供有关资质证明文件和业绩情况，并对潜在投标人进行资格审查；国家对投标人的资格条件有规定的，依照其规定。招标人不得以不合理的条件限制或者排斥潜在投标人，不得对潜在投标人实行歧视待遇。
+      kind: institutional-configuration
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: enum
+        field: verdict
+        values: []
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 institutional-configuration：第十八条只规定资格审查可做，结论取值（通过／不通过／待补正）属本机构口径。
+      values 出厂为空，表示**未配置**，本条进 skipped。
+      依据说明：结论的取值口径（例如「符合」「不符合」「需澄清」，
+      或「通过」「不通过」「待补正」）随**本机构或本项目资格审查办法**变化，
+      本插件**不硬编码任何取值清单**。
+      本条只核对所填值是否在册，**不判断该结论是否正确**，
+      更**不因为出现某个取值就认定投标无效**——那是资格审查委员会的职权。
+
+  - id: BQ-005
+    title: 否决项条款应逐条记录核对情况
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法实施条例》
+      number: 国务院令第613号（2011 年 12 月 20 日公布，2017 年 3 月 1 日修订，自 2012 年 2 月 1 日起施行）
+      clause: 第五十一条——评标委员会应当否决其投标的七项情形
+      excerpt: 有下列情形之一的，评标委员会应当否决其投标：（一）投标文件未经投标单位盖章和单位负责人签字；……（六）投标文件没有对招标文件的实质性要求和条件作出响应；（七）投标人有串通投标、弄虚作假、行贿等违法行为。
+      kind: derived-from-principle
+      source: https://www.gov.cn/gongbao/content/2017/content_5219119.htm
+    params:
+      check:
+        kind: conditionalPresence
+        conditionField: isPassFail
+        requiredFields: [actual, evidence, verdict]
+        conditionValues: ['是', 'Y', 'yes', 'true', '否决项', '√']
+        fix: 否决项应逐条记录实际情况、证明材料与结论；本条只核对清单闭环
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ✅ 条号已于 2026-10-07 回填：实施条例第五十一条逐字列举评标委员会「应当否决其投标」的七项情形，其中第（三）项为「投标人不符合国家或者招标文件规定的资格条件」——与本插件的资格核对直接相关。⚠️ kind 仍为 derived-from-principle：条文规范的是评标委员会的否决行为，不是台账栏位。
+      否决项是**一旦不满足即导致投标被否决**的条件，因此它的核对记录必须最完整：
+      实际情况、证明材料、结论三者缺一，事后都无法说明当时依据什么判断。
+      本次未取得明文条号，故封顶 warn。
+      ⚠️ **哪些条件属于否决项完全取决于本项目招标文件**，因此本条读取的是
+      **核对表自己的「是否否决项」栏**，而不是任何内置清单；
+      判定"是否属于否决项"的取值由 conditionValues 配置。
+      本条只核对清单闭环，**不判断该投标人是否应当被否决**。
+
+  - id: BQ-006
+    title: 核对表应声明项目、投标人与核对结论口径
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 关于资格预审与资格审查记录的条款（本次未取得条号）
+      excerpt: 招标人可以根据招标项目本身的要求，在招标公告或者投标邀请书中，要求潜在投标人提供有关资质证明文件和业绩情况，并对潜在投标人进行资格审查；国家对投标人的资格条件有规定的，依照其规定。招标人不得以不合理的条件限制或者排斥潜在投标人，不得对潜在投标人实行歧视待遇。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: headerPresence
+        fields: [project, bidder]
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第十八条规范资格审查本身，未要求任何核对表声明项目与投标人——那是可追溯性的前提。
+      核对表若不写明项目与投标人，结论无法追溯，也无法与其他投标人的核对结果比较。
+      本次未取得明文条号，故封顶 warn。
+      配置项 project 对应材料顶层的项目名称，bidder 对应投标人名称。
+      若本机构表式还在表头写明结论口径，把 verdicts 字段加进 fields 是**不会有帮助的**——
+      口径本身由 BQ-004 的 values 配置控制，此处只核对表头是否声明了主体信息。
+
+  - id: BQ-007
+    title: 资格条件序号不应在表内重复
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第十八条第二款——招标人不得以不合理的条件限制或者排斥潜在投标人，不得实行歧视待遇
+      excerpt: 招标人可以根据招标项目本身的要求，在招标公告或者投标邀请书中，要求潜在投标人提供有关资质证明文件和业绩情况，并对潜在投标人进行资格审查；国家对投标人的资格条件有规定的，依照其规定。招标人不得以不合理的条件限制或者排斥潜在投标人，不得对潜在投标人实行歧视待遇。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: unique
+        field: seq
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第十八条第二款禁止的是不合理条件与歧视待遇，未规定台账序号不得重复。
+      条件序号唯一是"每条资格条件只被核对一次"的**前提条件**：
+      序号重复会让人无法判断哪一行对应招标文件的哪一条。
+      本次未取得明文条号，故封顶 warn。比较时忽略空白字符。
+
+  - id: BQ-008
+    title: 要求内容栏不应残留未替换的占位符
+    severity: warn
+    basis:
+      document: 《中华人民共和国招标投标法》
+      number: 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行
+      clause: 第十九条——招标文件应当包括对投标人资格审查的标准等所有实质性要求
+      excerpt: 招标人应当根据招标项目的特点和需要编制招标文件。招标文件应当包括招标项目的技术要求、对投标人资格审查的标准、投标报价要求和评标标准等所有实质性要求和条件以及拟签订合同的主要条款。……招标项目需要划分标段、确定工期的，招标人应当合理划分标段、确定工期，并在招标文件中载明。
+      kind: derived-from-principle
+      source: https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201806/t20180629_776538.html
+    params:
+      check:
+        kind: containsAny
+        field: required
+        terms: ['【', '】', '{{', '}}', 'XXX', 'xxx', '待填', '待补充', 'TBD', 'todo', '示例']
+        fix: 要求内容应从招标文件抄录实际条件；残留占位符说明核对表是照模板抄的
+    note: >-
+      ✅ **本条 excerpt 已于 2026-10-07 换为逐字引文**（见 rules/evidence/clause-verification-tender-law-articles.md）。
+      ⚠️ kind 仍为 derived-from-principle：第十九条要求招标文件载明资格审查标准，未就占位符作任何规定。
+      核对表若直接照抄模板，要求内容栏留下【】、XXX、待填、TBD 之类占位符时，
+      会让人误以为已经核对了实际条件——**这是核对表最危险的失效方式**。
+      本次未取得明文条号，故封顶 warn。terms 可按本机构模板调整。
+
+disabled: []

@@ -1,0 +1,39 @@
+import { describeTablePlugin } from './table-plugin-suite.ts'
+import { Config } from '../src/config.ts'
+import { parseMaterial, runCheck, SPEC } from '../src/model.ts'
+import { buildView } from '../src/view.ts'
+import { inject, name, resolvePackageFile, TOOL_NAME } from '../src/index.ts'
+
+describeTablePlugin({
+  name,
+  inject,
+  TOOL_NAME,
+  resolvePackageFile,
+  Config,
+  rulesFile: 'rules/bid-qual-check.yaml',
+  parseMaterial,
+  runCheck,
+  buildView,
+  columnNames: SPEC.columns,
+  samples: {
+    good: {
+          "project": "某某工程施工招标",
+          "tenderNo": "ZB-2026-018",
+          "bidder": "某某建设有限公司",
+          "rows": [
+                {
+                      "序号": "1",
+                      "资格条件": "施工资质等级",
+                      "类别": "资格条件",
+                      "要求内容": "建筑工程施工总承包二级及以上",
+                      "投标人情况": "持有建筑工程施工总承包二级资质，证书在有效期内",
+                      "证明材料": "资质证书复印件，资格文件第 12 页",
+                      "核对结论": "符合",
+                      "是否否决项": "是",
+                      "核对人": "李工"
+                }
+          ]
+    },
+    unknownColumn: { rows: [{ 备注: '甲' }] },
+  },
+})

@@ -1,0 +1,30 @@
+{
+  "ruleId": "BQ-004",
+  "configure": {
+    "BQ-004": {
+      "values": [
+        "符合",
+        "不符合",
+        "需澄清"
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "name": "expected-state",
+      "material": "BQ-004-compliant.json",
+      "expect": {
+        "ruleId": "BQ-004",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "BQ-004-unsafe.json",
+      "expect": {
+        "ruleId": "BQ-004",
+        "count": 1
+      }
+    }
+  ]
+}
