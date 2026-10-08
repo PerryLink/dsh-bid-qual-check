@@ -1,0 +1,15 @@
+{
+  "note": "Excerpt segments that are not yet traceable to this repository's rules/evidence/ record. The check:citations gate fails on anything new and on any entry that has become traceable, so this list can only shrink.",
+  "untraceable": [
+    "BQ-001:927a513133b3",
+    "BQ-002:723f79835526",
+    "BQ-003:723f79835526",
+    "BQ-004:723f79835526",
+    "BQ-005:7490801b9792",
+    "BQ-005:ba17cebf9a3f",
+    "BQ-006:723f79835526",
+    "BQ-007:723f79835526",
+    "BQ-008:64c16126376f",
+    "BQ-008:e67d7ac08407"
+  ]
+}
