@@ -1,4 +1,24 @@
-# dsh-bid-qual-check
+# dsh-bid-qual-check — Bidder qualification condition register check
+
+`dsh-bid-qual-check` reads one bidder qualification condition register — the 投标人资格条件核对表, its header plus one row per qualification condition — and checks that register's own closed loop: that each condition records its requirement, that the bidder's actual position is recorded, that evidence is attached, that the verdict comes from your vocabulary, that a pass/fail item records position, evidence and verdict together, that the register names its project and bidder, that condition numbers are unique, and that no unreplaced placeholder survives in the requirement column.
+
+## What it answers
+
+| You ask | What it answers |
+|---|---|
+| One row has both `资格条件` and `要求内容` blank. Is that reported? | Yes. `BQ-001` holds every row to at least one of those two columns and reports the row when both are empty. It checks that something was written, not whether that condition is lawful or should have been set at all — that is a review of the tender document itself. |
+| A condition has its `投标人情况` column empty, and no `证明材料` either. | Two findings: `BQ-002` reports the row for the blank `投标人情况` (`actual`) and `BQ-003` for the blank `证明材料` (`evidence`). Both check only that the cell is filled — not whether the position satisfies the condition, nor whether the document is valid, current or matches the original, which needs the originals and the committee's call. A column that is present with every cell blank is still reported row by row; a material without that column puts the rule in `skipped` instead of passing silently. |
+| The `核对结论` column is blank on a row. Does `BQ-004` report it? | No — `BQ-004` tests only the values that are written and skips blank cells. Its `values` list ships empty, so out of the box the rule reports itself in `skipped`; once you configure your institution's vocabulary in `values` (`符合` / `不符合` / `需澄清`, say), a value outside that list is reported row by row. It checks that the value is in your vocabulary, not that the conclusion is correct, and no value ever invalidates a bid. The rule is capped at `info`, because the vocabulary is your institution's to set. |
+| A row's `是否否决项` cell reads `是`, but `投标人情况` or `证明材料` is missing. | `BQ-005` requires `投标人情况`, `证明材料` and `核对结论` together on every row whose `是否否决项` cell matches the configured marks (`是`, `Y`, `yes`, `true`, `否决项`, `√` by default) and reports the row with what is missing. Which conditions count as pass/fail comes entirely from the tender document and from that column, never from a built-in list. If no row carries such a mark, the rule reports itself in `skipped` instead of passing — and it never decides whether the bid should be rejected. |
+| The register's header names the tender number, but not the project or the bidder. | `BQ-006` reports the header once and names what is missing: `project` (the project name) or `bidder` (the bidder name). It only checks that the header declares those two parties — it does not check the tender number or the check date, and adding the verdict vocabulary to this rule would not help, because that is controlled by `BQ-004`'s `values`. |
+| This register was copied from a template: two rows share the number `3`, and one `要求内容` cell still reads `待填`. | `BQ-007` reports the repeated `序号` (the comparison ignores whitespace, so `3` and ` 3 ` are the same number), and if no row carries a number at all it reports itself in `skipped` instead of passing. `BQ-008` reports the residual placeholder in `要求内容` — `【`, `】`, `{{`, `}}`, `XXX`, `待填`, `待补充`, `TBD`, `示例` and the rest of its `terms` list, which you can narrow. Both checks are literal: neither judges whether the requirement itself is right, and a requirement genuinely quoted with an `XXX` in it is reported too. |
+
+## Standards it follows
+
+| Document | Number | Cited by rules |
+|---|---|---|
+| 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | BQ-001, BQ-002, BQ-003, BQ-004, BQ-006, BQ-007, BQ-008 |
+| 《中华人民共和国招标投标法实施条例》 | 国务院令第613号（2011 年 12 月 20 日公布，2017 年 3 月 1 日修订，自 2012 年 2 月 1 日起施行） | BQ-005 |
 
 **Boundary:** this plugin checks a **投标人资格条件核对表** for the closed loop a checklist can be held to —
 that every condition records its requirement and the bidder's actual position, that evidence is attached, that

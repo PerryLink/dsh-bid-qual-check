@@ -1,4 +1,24 @@
-# dsh-bid-qual-check
+# dsh-bid-qual-check — Verificación del registro de condiciones de cualificación del licitante
+
+`dsh-bid-qual-check` lee un registro de condiciones de cualificación del licitante —la 投标人资格条件核对表, con su cabecera más una fila por condición— y comprueba el cierre interno de ese propio registro: que cada condición registre su requisito, que quede registrada la situación real del licitante, que se adjunte la prueba documental, que el veredicto proceda de su vocabulario, que una partida eliminatoria registre a la vez situación, prueba y veredicto, que el registro nombre su proyecto y su licitante, que los números de condición sean únicos y que no quede ningún marcador de plantilla sin sustituir en la columna del requisito.
+
+## Qué responde
+
+| Usted pregunta | Qué responde |
+|---|---|
+| Una fila tiene vacías tanto la columna `资格条件` como la `要求内容`. ¿Se informa de eso? | Sí. `BQ-001` exige que cada fila traiga al menos una de esas dos columnas y señala la fila cuando ambas están vacías. Comprueba que se haya escrito algo, no si esa condición es lícita o si debería haberse establecido: eso es un examen del propio pliego. |
+| Una condición tiene vacía la columna `投标人情况` y tampoco trae `证明材料`. | Dos hallazgos: `BQ-002` señala la fila por la `投标人情况` (`actual`) vacía y `BQ-003` por la `证明材料` (`evidence`) vacía. Ambas comprueban solo que la celda esté rellena, no que la situación satisfaga la condición ni que el documento sea válido, esté vigente o coincida con el original, lo que exige los originales y la decisión de la comisión. Una columna presente con todas sus celdas vacías se sigue señalando fila por fila; si el material no trae esa columna, las reglas pasan a `skipped` en lugar de pasar en silencio. |
+| La columna `核对结论` está vacía en una fila. ¿Lo señala `BQ-004`? | No: `BQ-004` solo examina los valores escritos y omite las celdas vacías. Su lista `values` viene vacía, así que de fábrica la regla se declara a sí misma en `skipped`; cuando configure en `values` el vocabulario de su institución (`符合` / `不符合` / `需澄清`, por ejemplo), cada valor fuera de esa lista se señala fila por fila. Comprueba que el valor esté en su vocabulario, no que la conclusión sea correcta, y ningún valor invalida una oferta. La regla está limitada a `info`, porque el vocabulario lo fija su institución. |
+| Una fila lleva `是` en `是否否决项`, pero le falta `投标人情况` o `证明材料`. | `BQ-005` exige que toda fila cuya celda `是否否决项` coincida con los valores configurados (`是`, `Y`, `yes`, `true`, `否决项`, `√` por defecto) rellene a la vez `投标人情况`, `证明材料` y `核对结论`, y señala lo que falte. Qué condiciones son eliminatorias depende por completo del pliego y de esa columna, nunca de una lista incorporada. Si ninguna fila lleva esa marca, la regla se declara en `skipped` en lugar de pasar, y nunca decide si la oferta debe rechazarse. |
+| La cabecera del registro trae el número de licitación, pero no el proyecto ni el licitante. | `BQ-006` informa una vez de la cabecera y nombra lo que falta: `project` (el nombre del proyecto) o `bidder` (el nombre del licitante). Solo comprueba que la cabecera declare esas dos partes; no revisa el número de licitación ni la fecha de verificación, y añadir el vocabulario de conclusiones a esta regla no serviría, porque lo controla el `values` de `BQ-004`. |
+| Este registro se copió de una plantilla: dos filas comparten el número `3` y una celda `要求内容` todavía dice `待填`. | `BQ-007` señala el `序号` repetido (la comparación ignora los espacios, así que `3` y ` 3 ` son el mismo número) y, si ninguna fila lleva número, se declara en `skipped` en lugar de pasar. `BQ-008` señala el marcador residual en `要求内容` —`【`, `】`, `{{`, `}}`, `XXX`, `待填`, `待补充`, `TBD`, `示例` y el resto de su lista `terms`, que puede acortar. Ambas comprobaciones son literales: ninguna juzga si el requisito es correcto, y un requisito copiado al pie de la letra que contenga `XXX` también se señala. |
+
+## Normas que sigue
+
+| Documento | Número | Reglas que lo citan |
+|---|---|---|
+| 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | BQ-001, BQ-002, BQ-003, BQ-004, BQ-006, BQ-007, BQ-008 |
+| 《中华人民共和国招标投标法实施条例》 | 国务院令第613号（2011 年 12 月 20 日公布，2017 年 3 月 1 日修订，自 2012 年 2 月 1 日起施行） | BQ-005 |
 
 **Boundary:** this plugin checks a **投标人资格条件核对表** for the closed loop a checklist can be held to —
 that every condition records its requirement and the bidder's actual position, that evidence is attached, that
