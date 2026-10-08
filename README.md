@@ -60,15 +60,14 @@ condition — applies a versioned rule pack, and returns a report.
 
 | Rule | Check | Severity | Basis kind |
 |---|---|---|---|
-| `BQ-001` | every condition records its requirement | warn | principle |
-| `BQ-002` | every condition records the bidder's actual position | warn | principle |
-| `BQ-003` | every condition attaches evidence | warn | principle |
+| `BQ-001` | every condition records its requirement | warn | direct |
+| `BQ-002` | every condition records the bidder's actual position | warn | direct |
+| `BQ-003` | every condition attaches evidence | warn | direct |
 | `BQ-004` | the verdict comes from your vocabulary (off by default) | info | local |
 | `BQ-005` | a pass/fail item records position, evidence and verdict | warn | principle |
 | `BQ-006` | the table names its project and bidder | warn | principle |
 | `BQ-007` | condition numbers are unique | warn | principle |
 | `BQ-008` | the requirement column holds no unreplaced placeholder | warn | principle |
-
 ## Install
 
 ```sh

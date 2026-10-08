@@ -1,6 +1,6 @@
 {
   "name": "dsh-bid-qual-check",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "投标人资格条件核对（按资格条件与证明材料核对逐条响应，仅提示差异，不作出定性结论）",
   "type": "module",
   "main": "lib/index.mjs",
