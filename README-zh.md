@@ -40,8 +40,7 @@ qualification committee's call, made against the evidence originals and the tend
 ## Install
 
 ```sh
-pnpm pack
-dsh plugin --profile <name> add ./*.tgz
+dsh plugin --profile <name> add dsh-bid-qual-check
 dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 ```
 

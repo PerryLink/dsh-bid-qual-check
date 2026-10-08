@@ -52,8 +52,7 @@ condition — applies a versioned rule pack, and returns a report.
 ## Install
 
 ```sh
-pnpm pack
-dsh plugin --profile <name> add ./dsh-bid-qual-check-0.1.0.tgz
+dsh plugin --profile <name> add dsh-bid-qual-check
 dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 ```
 
