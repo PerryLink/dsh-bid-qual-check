@@ -8,7 +8,7 @@
 
 ![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-demo.png)
 
-Real output from this plugin over its own `BQ-002` test fixture — not a mock-up. The rule pack ships no invented quotations, so a finding names both the clause it applied and the fact that the clause text was not obtained.
+Real output from this plugin over its own `BQ-002` test fixture — not a mock-up. The rule pack ships no invented quotations: a finding names the clause it applied and whether that excerpt is a verbatim quotation or a derived principle.
 
 ## What it answers
 
@@ -37,8 +37,8 @@ qualification committee's call, made against the evidence originals and the tend
 
 > ### ⚠️ Read this before trusting a citation in the report
 >
-> **Every `excerpt` in this plugin's rule pack says, in so many words, that the clause text was not
-> obtained.** The regime lives in 《中华人民共和国招标投标法》(notably its articles on qualification
+> **`excerpt` status is per rule, not uniform.** Some rules (`BQ-001`/`BQ-002`/`BQ-003`/
+> `BQ-005`) carry verbatim text; the rest say so when the text was not obtained. The regime lives in 《中华人民共和国招标投标法》(notably its articles on qualification
 > conditions and on bidders' qualifications), 《招标投标法实施条例》, and **each tender document's own
 > qualification conditions**. The verification pass could not retrieve verbatim clause text, so rather than
 > paraphrase a quotation the pack states the gap in the `excerpt` field itself and puts the honest reasoning

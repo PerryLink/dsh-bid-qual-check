@@ -3,6 +3,7 @@
 ## 0.2.6 - 2026-10-17
 
 - Compatibility: declare `engines.dsh` `>=0.2.1-0 <0.3.0`; move `@deepseek-ai/dsh-*` devDependencies to `0.2.1-rc.2`; add `@deepseek-ai/dsh-working-directory`.
+- Rules/docs: the pack no longer claims every excerpt is a placeholder. The three `direct` rules keep their verbatim text; the four derived/institutional rules say so, the evidence paths resolve, and `BQ-004`/`BQ-006` no longer deny having a clause number.
 - Docs: the compatibility table no longer claims `engines.dsh` is undeclared; drop the retired `both` tool mode.
 
 
