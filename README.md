@@ -4,6 +4,13 @@
 
 `dsh-bid-qual-check` reads one bidder qualification condition register — the 投标人资格条件核对表, its header plus one row per qualification condition — and checks that register's own closed loop: that each condition records its requirement, that the bidder's actual position is recorded, that evidence is attached, that the verdict comes from your vocabulary, that a pass/fail item records position, evidence and verdict together, that the register names its project and bidder, that condition numbers are unique, and that no unreplaced placeholder survives in the requirement column.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-bid-qual-check
+dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
+```
+
 ## What it looks like
 
 ![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
@@ -78,13 +85,6 @@ condition — applies a versioned rule pack, and returns a report.
 | `BQ-006` | the table names its project and bidder | warn | principle |
 | `BQ-007` | condition numbers are unique | warn | principle |
 | `BQ-008` | the requirement column holds no unreplaced placeholder | warn | principle |
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-bid-qual-check
-dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
-```
-
 ## Configuration
 
 | Key | Type | Default | Description |

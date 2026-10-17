@@ -4,6 +4,13 @@
 
 `dsh-bid-qual-check` lee un registro de condiciones de cualificación del licitante —la 投标人资格条件核对表, con su cabecera más una fila por condición— y comprueba el cierre interno de ese propio registro: que cada condición registre su requisito, que quede registrada la situación real del licitante, que se adjunte la prueba documental, que el veredicto proceda de su vocabulario, que una partida eliminatoria registre a la vez situación, prueba y veredicto, que el registro nombre su proyecto y su licitante, que los números de condición sean únicos y que no quede ningún marcador de plantilla sin sustituir en la columna del requisito.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-bid-qual-check
+dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
+```
+
 ## Cómo se ve la salida
 
 ![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
@@ -66,13 +73,6 @@ qualification committee's call, made against the evidence originals and the tend
 ## What it does
 
 La tabla de reglas, los campos y el comportamiento detallado están en [README.md](README.md#what-it-does) (versión principal en inglés). El plugin sólo enumera divergencias literales frente a las cláusulas citadas e indica en `skipped` cada comprobación que no pudo ejecutarse.
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-bid-qual-check
-dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
-```
 
 ## Configuration
 

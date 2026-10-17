@@ -4,6 +4,13 @@
 
 `dsh-bid-qual-check` निविदा प्रतिभागी की अर्हता शर्तों का एक रजिस्टर — 投标人资格条件核对表, उसका हेडर और प्रत्येक अर्हता शर्त की एक पंक्ति — पढ़ता है और उसी रजिस्टर का आंतरिक बंद-चक्र जाँचता है: क्या प्रत्येक शर्त अपनी आवश्यकता दर्ज करती है, क्या प्रतिभागी की वास्तविक स्थिति दर्ज है, क्या प्रमाण संलग्न है, क्या निर्णय आपकी शब्दावली से आता है, क्या निर्णायक मद में स्थिति, प्रमाण और निर्णय तीनों साथ दर्ज हैं, क्या रजिस्टर अपना परियोजना-नाम और प्रतिभागी बताता है, क्या शर्तों के क्रमांक अद्वितीय हैं, और क्या आवश्यकता कॉलम में कोई अपूरित प्लेसहोल्डर बचा नहीं है।
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-bid-qual-check
+dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
+```
+
 ## आउटपुट कैसा दिखता है
 
 ![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
@@ -66,13 +73,6 @@ qualification committee's call, made against the evidence originals and the tend
 ## What it does
 
 नियम-सूची, फ़ील्ड और विस्तृत व्यवहार [README.md](README.md#what-it-does) (अंग्रेज़ी मुख्य संस्करण) में हैं। यह प्लगइन केवल उद्धृत धाराओं के सामने शाब्दिक अंतर सूचीबद्ध करता है और हर न चल पाई जाँच को `skipped` में बताता है।
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-bid-qual-check
-dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
-```
 
 ## Configuration
 

@@ -4,6 +4,13 @@
 
 `dsh-bid-qual-check` 读取一份投标人资格条件核对表——表头加每条资格条件一行——核对这张核对表自身的逐条闭环：每条资格条件是否填写了要求内容、是否记录了投标人实际情况、是否附证明材料、核对结论是否使用本机构口径的取值、标记为否决项的行是否同时记录了实际情况、证明材料与结论、表头是否写明项目与投标人、资格条件序号是否唯一、要求内容栏是否残留未替换的占位符。
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-bid-qual-check
+dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
+```
+
 ## 实际输出长什么样
 
 ![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
@@ -66,13 +73,6 @@ qualification committee's call, made against the evidence originals and the tend
 ## What it does
 
 规则表、字段说明与行为细节见 [README.md](README.md#what-it-does)（英文主版本）。本插件只列出材料与所引条款之间的字面差异，并对无法执行的检查在 `skipped` 中逐项说明。
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-bid-qual-check
-dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
-```
 
 ## Configuration
 
