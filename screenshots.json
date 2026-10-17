@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/assets/dsh-bid-qual-check-hero.png",
+    "kind": "hero",
+    "alt": "dsh-bid-qual-check terminal output",
+    "caption": "Real dsh-bid-qual-check checker output; 33 tests passed."
+  },
+  {
+    "path": "docs/assets/dsh-bid-qual-check-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-bid-qual-check terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]
