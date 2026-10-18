@@ -1,5 +1,7 @@
 # dsh-bid-qual-check — Bidder qualification condition register check
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-bid-qual-check` reads one bidder qualification condition register — the 投标人资格条件核对表, its header plus one row per qualification condition — and checks that register's own closed loop: that each condition records its requirement, that the bidder's actual position is recorded, that evidence is attached, that the verdict comes from your vocabulary, that a pass/fail item records position, evidence and verdict together, that the register names its project and bidder, that condition numbers are unique, and that no unreplaced placeholder survives in the requirement column.

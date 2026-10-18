@@ -1,5 +1,7 @@
 # dsh-bid-qual-check — 投标人资格条件核对
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-bid-qual-check` 读取一份投标人资格条件核对表——表头加每条资格条件一行——核对这张核对表自身的逐条闭环：每条资格条件是否填写了要求内容、是否记录了投标人实际情况、是否附证明材料、核对结论是否使用本机构口径的取值、标记为否决项的行是否同时记录了实际情况、证明材料与结论、表头是否写明项目与投标人、资格条件序号是否唯一、要求内容栏是否残留未替换的占位符。

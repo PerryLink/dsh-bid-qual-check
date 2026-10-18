@@ -1,5 +1,7 @@
 # dsh-bid-qual-check — Verificação do registo de condições de qualificação do concorrente
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-bid-qual-check` lê um registo de condições de qualificação do concorrente —a 投标人资格条件核对表, com o seu cabeçalho mais uma linha por condição— e verifica o fecho interno desse próprio registo: se cada condição regista o seu requisito, se fica registada a situação real do concorrente, se a prova documental é anexada, se o veredicto vem do seu vocabulário, se uma partida eliminatória regista em conjunto situação, prova e veredicto, se o registo indica o seu projeto e o seu concorrente, se os números de condição são únicos e se não resta nenhum marcador de modelo por substituir na coluna do requisito.
