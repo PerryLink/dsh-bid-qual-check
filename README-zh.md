@@ -39,12 +39,7 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 | 《中华人民共和国招标投标法》 | 1999年8月30日通过，2017年12月27日修正（全国人大常委会《关于修改〈中华人民共和国招标投标法〉、〈中华人民共和国计量法〉的决定》），本法自2000年1月1日起施行 | BQ-001, BQ-002, BQ-003, BQ-004, BQ-006, BQ-007, BQ-008 |
 | 《中华人民共和国招标投标法实施条例》 | 国务院令第613号（2011 年 12 月 20 日公布，2017 年 3 月 1 日修订，自 2012 年 2 月 1 日起施行） | BQ-005 |
 
-**Boundary:** this plugin checks a **投标人资格条件核对表** for the closed loop a checklist can be held to —
-that every condition records its requirement and the bidder's actual position, that evidence is attached, that
-verdicts come from your vocabulary, that a **pass/fail item** records all three, that the table names its
-project and bidder, that numbers are unique, and that no placeholder survives. It does **not** decide whether a
-bidder is qualified, whether qualification fails, or whether a bid should be rejected. **That is the
-qualification committee's call, made against the evidence originals and the tender document's conditions.**
+**边界（中文译文，以英文原文为准）：** 本插件核对一份 **投标人资格条件核对表** 在核对表层面可以要求到的闭环——每项条件是否记录了要求内容与投标人实际情况，是否附有证明材料，核对结论是否取自你的取值口径，**否决项**是否同时记录投标人实际情况、证明材料与核对结论，表格是否写明项目与投标人，编号是否唯一，以及是否残留占位符。它**不**判定投标人是否具备资格、资格审查是否不通过，也不判定投标是否应当被否决。**那是资格审查委员会的判断，须对照证明材料原件与招标文件规定的条件作出。**
 
 > ### ⚠️ Read this before trusting a citation in the report
 >
