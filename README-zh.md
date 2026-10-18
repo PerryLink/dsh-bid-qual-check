@@ -41,22 +41,19 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 
 **边界（中文译文，以英文原文为准）：** 本插件核对一份 **投标人资格条件核对表** 在核对表层面可以要求到的闭环——每项条件是否记录了要求内容与投标人实际情况，是否附有证明材料，核对结论是否取自你的取值口径，**否决项**是否同时记录投标人实际情况、证明材料与核对结论，表格是否写明项目与投标人，编号是否唯一，以及是否残留占位符。它**不**判定投标人是否具备资格、资格审查是否不通过，也不判定投标是否应当被否决。**那是资格审查委员会的判断，须对照证明材料原件与招标文件规定的条件作出。**
 
-> ### ⚠️ Read this before trusting a citation in the report
+> ### ⚠️ 在采信报告中的引文之前，请先读这一段（以英文原文为准）
 >
-> **Every `excerpt` in this plugin's rule pack says, in so many words, that the clause text was not
-> obtained.** The regime lives in 《中华人民共和国招标投标法》(notably its articles on qualification
-> conditions and on bidders' qualifications), 《招标投标法实施条例》, and **each tender document's own
-> qualification conditions**. The verification pass could not retrieve verbatim clause text, so rather than
-> paraphrase a quotation the pack states the gap in the `excerpt` field itself and puts the honest reasoning
-> in `note`. Every rule is therefore `warn` or `info`, and a test asserts that no rule claims a quotation it
-> does not have. **When the texts are in hand, two things must be done: replace each `excerpt` with the real
-> clause, and raise `kind` to `direct`.**
+> **本插件规则包中的每一条 `excerpt` 都明确写着：本次未取得条款原文。** 该制度见诸
+> 《中华人民共和国招标投标法》（尤其是关于资格条件与投标人资格的条款）、《招标投标法实施条例》，
+> 以及**每份招标文件自身的资格条件**。核验环节未能取得逐字条款原文，因此规则包没有转述引文，
+> 而是在 `excerpt` 字段本身写明这一缺口，并将诚实的推理写入 `note`。因此每条规则都是
+> `warn` 或 `info`，并有测试断言没有任何规则声称拥有它并不拥有的引文。**取得文本后，必须做两件事：
+> 将每条 `excerpt` 替换为真实条款，并将 `kind` 提升为 `direct`。**
 >
-> Two judgements are yours, not the plugin's. **Which conditions count as pass/fail items depends entirely on
-> the tender document**, so `BQ-005` reads the **checklist's own 是否否决项 column** rather than any built-in
-> list, and the values that mark an item as pass/fail are configurable. And the **verdict vocabulary ships
-> empty** — with nothing configured, `BQ-004` reports itself in `skipped`. A finding never says a bid is
-> invalid; it says a cell is empty or a value is not in your vocabulary.
+> 有两项判断是你的，而不是本插件的。**哪些条件算作通过/否决项，完全取决于招标文件**，因此
+> `BQ-005` 读取的是**清单自身的“是否否决项”一栏**，而不是任何内置清单；标记某项为通过/否决的
+> 取值是可配置的。而且**结论词汇表出厂为空**——未配置任何内容时，`BQ-004` 会在 `skipped` 中自行
+> 报告。一条发现从不表示某投标无效；它表示某个单元格为空，或某个取值不在你的词汇表中。
 
 ## Compatibility
 
