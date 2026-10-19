@@ -28,6 +28,35 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 
 The table below is the example set: the first row is the detailed walkthrough, the remaining rows are short cases.
 
+#### Detailed output
+
+**Tool** `bid_qual_check`
+
+**Input**
+
+~~~json
+{"rows":[{"序号":"1","资格条件":"","类别":"资格条件","要求内容":"", ...}]}
+~~~
+ 
+**Output**
+
+~~~json
+{
+  "id": "dsh-bid-qual-check.BQ-001.de09b5a6",
+  "ruleId": "BQ-001",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "required"
+  },
+  "found": "第 1 行 required、criterion 都为空",
+  "expected": "required、criterion 至少应填写一项",
+  "fix": "补填资格条件与要求内容；本条只核对是否填写，不判断该条件是否应当设置"
+}
+~~~
+
+*Observed from `dsh-bid-qual-check/tests/fixtures/BQ-001/BQ-001-unsafe.json; dsh-bid-qual-check/tests/fixtures/BQ-001/cases.json; dsh-bid-qual-check/rules/bid-qual-check.yaml; dsh-bid-qual-check/tests/index.test.ts`*
+
 | You ask | What it answers |
 |---|---|
 | One row has both `资格条件` and `要求内容` blank. Is that reported? | Yes. `BQ-001` holds every row to at least one of those two columns and reports the row when both are empty. It checks that something was written, not whether that condition is lawful or should have been set at all — that is a review of the tender document itself. |

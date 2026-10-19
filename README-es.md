@@ -30,6 +30,35 @@ Salida real de este plugin sobre su propio fixture de prueba `BQ-002` — no es 
 La tabla siguiente es el conjunto de ejemplos: la primera fila es el caso detallado y las demás son casos breves.
 
 
+#### Salida detallada
+
+**Herramienta** `bid_qual_check`
+
+**Entrada**
+
+~~~json
+{"rows":[{"序号":"1","资格条件":"","类别":"资格条件","要求内容":"", ...}]}
+~~~
+ 
+**Salida**
+
+~~~json
+{
+  "id": "dsh-bid-qual-check.BQ-001.de09b5a6",
+  "ruleId": "BQ-001",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "required"
+  },
+  "found": "第 1 行 required、criterion 都为空",
+  "expected": "required、criterion 至少应填写一项",
+  "fix": "补填资格条件与要求内容；本条只核对是否填写，不判断该条件是否应当设置"
+}
+~~~
+
+*Observado en `dsh-bid-qual-check/tests/fixtures/BQ-001/BQ-001-unsafe.json; dsh-bid-qual-check/tests/fixtures/BQ-001/cases.json; dsh-bid-qual-check/rules/bid-qual-check.yaml; dsh-bid-qual-check/tests/index.test.ts`*
+
 | Usted pregunta | Qué responde |
 |---|---|
 | Una fila tiene vacías tanto la columna `资格条件` como la `要求内容`. ¿Se informa de eso? | Sí. `BQ-001` exige que cada fila traiga al menos una de esas dos columnas y señala la fila cuando ambas están vacías. Comprueba que se haya escrito algo, no si esa condición es lícita o si debería haberse establecido: eso es un examen del propio pliego. |

@@ -30,6 +30,35 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 नीचे दी गई तालिका उदाहरण-समुच्चय है: पहली पंक्ति विस्तृत केस है, बाकी संक्षिप्त केस हैं।
 
 
+#### विस्तृत आउटपुट
+
+**उपकरण** `bid_qual_check`
+
+**इनपुट**
+
+~~~json
+{"rows":[{"序号":"1","资格条件":"","类别":"资格条件","要求内容":"", ...}]}
+~~~
+ 
+**आउटपुट**
+
+~~~json
+{
+  "id": "dsh-bid-qual-check.BQ-001.de09b5a6",
+  "ruleId": "BQ-001",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "required"
+  },
+  "found": "第 1 行 required、criterion 都为空",
+  "expected": "required、criterion 至少应填写一项",
+  "fix": "补填资格条件与要求内容；本条只核对是否填写，不判断该条件是否应当设置"
+}
+~~~
+
+*स्रोत `dsh-bid-qual-check/tests/fixtures/BQ-001/BQ-001-unsafe.json; dsh-bid-qual-check/tests/fixtures/BQ-001/cases.json; dsh-bid-qual-check/rules/bid-qual-check.yaml; dsh-bid-qual-check/tests/index.test.ts`*
+
 | आपका सवाल | इसका जवाब |
 |---|---|
 | एक पंक्ति में `资格条件` और `要求内容` दोनों कॉलम खाली हैं। क्या यह दर्ज होता है? | हाँ। `BQ-001` हर पंक्ति में इन दोनों में से कम से कम एक कॉलम भरे होने की अपेक्षा करता है और दोनों खाली होने पर उस पंक्ति को दर्ज करता है। यह देखता है कि कुछ लिखा गया है या नहीं, यह नहीं कि वह शर्त वैध है या उसे रखा ही जाना चाहिए था — वह निविदा दस्तावेज़ की अपनी समीक्षा है। |

@@ -30,6 +30,35 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 下表是示例集：第一行是详细走查，其余行是简短案例。
 
 
+#### 详细输出
+
+**工具** `bid_qual_check`
+
+**输入**
+
+~~~json
+{"rows":[{"序号":"1","资格条件":"","类别":"资格条件","要求内容":"", ...}]}
+~~~
+ 
+**输出**
+
+~~~json
+{
+  "id": "dsh-bid-qual-check.BQ-001.de09b5a6",
+  "ruleId": "BQ-001",
+  "severity": "warn",
+  "locator": {
+    "row": 1,
+    "field": "required"
+  },
+  "found": "第 1 行 required、criterion 都为空",
+  "expected": "required、criterion 至少应填写一项",
+  "fix": "补填资格条件与要求内容；本条只核对是否填写，不判断该条件是否应当设置"
+}
+~~~
+
+*来源 `dsh-bid-qual-check/tests/fixtures/BQ-001/BQ-001-unsafe.json; dsh-bid-qual-check/tests/fixtures/BQ-001/cases.json; dsh-bid-qual-check/rules/bid-qual-check.yaml; dsh-bid-qual-check/tests/index.test.ts`*
+
 | 你会问 | 它怎么答 |
 |---|---|
 | 某一行的「资格条件」与「要求内容」两栏都是空的，会报出来吗？ | 会。`BQ-001` 要求每行在这两栏中至少填一栏，两栏皆空时逐行报出。它只核对是否填写，不判断该资格条件本身是否合法、是否应当设置——那是对招标文件本身的审查。 |
