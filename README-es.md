@@ -3,6 +3,7 @@
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-bid-qual-check?metric=downloads)](https://dshfind.com/en/plugins/PerryLink/dsh-bid-qual-check?ref=badge)
 
 `dsh-bid-qual-check` lee un registro de condiciones de cualificación del licitante —la 投标人资格条件核对表, con su cabecera más una fila por condición— y comprueba el cierre interno de ese propio registro: que cada condición registre su requisito, que quede registrada la situación real del licitante, que se adjunte la prueba documental, que el veredicto proceda de su vocabulario, que una partida eliminatoria registre a la vez situación, prueba y veredicto, que el registro nombre su proyecto y su licitante, que los números de condición sean únicos y que no quede ningún marcador de plantilla sin sustituir en la columna del requisito.
 

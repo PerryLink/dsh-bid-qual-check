@@ -3,6 +3,7 @@
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-bid-qual-check?metric=downloads)](https://dshfind.com/en/plugins/PerryLink/dsh-bid-qual-check?ref=badge)
 
 `dsh-bid-qual-check` निविदा प्रतिभागी की अर्हता शर्तों का एक रजिस्टर — 投标人资格条件核对表, उसका हेडर और प्रत्येक अर्हता शर्त की एक पंक्ति — पढ़ता है और उसी रजिस्टर का आंतरिक बंद-चक्र जाँचता है: क्या प्रत्येक शर्त अपनी आवश्यकता दर्ज करती है, क्या प्रतिभागी की वास्तविक स्थिति दर्ज है, क्या प्रमाण संलग्न है, क्या निर्णय आपकी शब्दावली से आता है, क्या निर्णायक मद में स्थिति, प्रमाण और निर्णय तीनों साथ दर्ज हैं, क्या रजिस्टर अपना परियोजना-नाम और प्रतिभागी बताता है, क्या शर्तों के क्रमांक अद्वितीय हैं, और क्या आवश्यकता कॉलम में कोई अपूरित प्लेसहोल्डर बचा नहीं है।
 
