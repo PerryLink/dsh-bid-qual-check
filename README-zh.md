@@ -15,13 +15,19 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 
 ## 实际输出长什么样
 
-![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
+![dsh-bid-qual-check 工作流图：文档 → 规则包 → 核对结果。](docs/assets/dsh-bid-qual-check-flow.svg)
 
-![Animated terminal demo of dsh-bid-qual-check](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-demo.gif)
+*工作流概览：文档 → 规则包 → 核对结果。下面的示例使用实际命令面。*
+
 
 本插件对自己 `BQ-002` 测试夹具的**真实输出**，不是示意图。规则库不伪造引文：每条发现都会写明所引条款，以及该条 excerpt 是逐字引文还是原则性推论。
 
 ## 它回答什么问题
+
+### 示例
+
+下表是示例集：第一行是详细走查，其余行是简短案例。
+
 
 | 你会问 | 它怎么答 |
 |---|---|

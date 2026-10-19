@@ -15,13 +15,19 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 
 ## Cómo se ve la salida
 
-![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
+![Diagrama de flujo de dsh-bid-qual-check: documento → reglas → hallazgos.](docs/assets/dsh-bid-qual-check-flow.svg)
 
-![Animated terminal demo of dsh-bid-qual-check](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-demo.gif)
+*Resumen del flujo: documento → reglas → hallazgos. Los ejemplos siguientes usan la superficie de comandos real.*
+
 
 Salida real de este plugin sobre su propio fixture de prueba `BQ-002` — no es un montaje. El paquete de reglas no inventa citas: cada hallazgo nombra la cláusula aplicada y si su excerpt es una cita literal o una inferencia de principio.
 
 ## Qué responde
+
+### Ejemplos
+
+La tabla siguiente es el conjunto de ejemplos: la primera fila es el caso detallado y las demás son casos breves.
+
 
 | Usted pregunta | Qué responde |
 |---|---|

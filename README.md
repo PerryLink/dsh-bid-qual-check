@@ -15,13 +15,17 @@ dsh --profile <name> --dump-config | grep 'dsh-bid-qual-check'
 
 ## What it looks like
 
-![Terminal demo of dsh-bid-qual-check: real output over its BQ-002 fixture](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-hero.png)
+![Workflow diagram for dsh-bid-qual-check: document → rule pack → findings.](docs/assets/dsh-bid-qual-check-flow.svg)
 
-![Animated terminal demo of dsh-bid-qual-check](https://raw.githubusercontent.com/PerryLink/dsh-bid-qual-check/main/docs/assets/dsh-bid-qual-check-demo.gif)
+*Workflow overview: document → rule pack → findings. The examples below use the real command surface.*
 
-Real output from this plugin over its own `BQ-002` test fixture — not a mock-up. The rule pack ships no invented quotations: a finding names the clause it applied and whether that excerpt is a verbatim quotation or a derived principle.
+
 
 ## What it answers
+
+### Examples
+
+The table below is the example set: the first row is the detailed walkthrough, the remaining rows are short cases.
 
 | You ask | What it answers |
 |---|---|
