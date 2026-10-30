@@ -91,20 +91,9 @@ qualification committee's call, made against the evidence originals and the tend
 
 > ### ⚠️ Read this before trusting a citation in the report
 >
-> **`excerpt` status is per rule, not uniform.** Some rules (`BQ-001`/`BQ-002`/`BQ-003`/
-> `BQ-005`) carry verbatim text; the rest say so when the text was not obtained. The regime lives in 《中华人民共和国招标投标法》(notably its articles on qualification
-> conditions and on bidders' qualifications), 《招标投标法实施条例》, and **each tender document's own
-> qualification conditions**. The verification pass could not retrieve verbatim clause text, so rather than
-> paraphrase a quotation the pack states the gap in the `excerpt` field itself and puts the honest reasoning
-> in `note`. Every rule is therefore `warn` or `info`, and a test asserts that no rule claims a quotation it
-> does not have. **When the texts are in hand, two things must be done: replace each `excerpt` with the real
-> clause, and raise `kind` to `direct`.**
+> **`excerpt` status is per rule, not uniform.** Some rules quote the clause verbatim (`kind: direct`), some are derived from the principle of the cited articles (`kind: derived-from-principle`, capped at `warn`), and some use thresholds your institution configures (`kind: institutional-configuration`, capped at `info`). The pack never paraphrases a quotation: when the text was not obtained, the `excerpt` field says so and the reasoning lives in `note`; a test asserts that no rule claims a quotation it does not have. **For any rule still marked as not obtained, replace the `excerpt` with the real clause and raise `kind` to `direct` once the text is in hand.**
 >
-> Two judgements are yours, not the plugin's. **Which conditions count as pass/fail items depends entirely on
-> the tender document**, so `BQ-005` reads the **checklist's own 是否否决项 column** rather than any built-in
-> list, and the values that mark an item as pass/fail are configurable. And the **verdict vocabulary ships
-> empty** — with nothing configured, `BQ-004` reports itself in `skipped`. A finding never says a bid is
-> invalid; it says a cell is empty or a value is not in your vocabulary.
+> The conclusion is the reviewer's: this plugin lists differences it can point to in the material and does not decide facts or compliance.
 
 ## Compatibility
 
