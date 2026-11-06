@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-dark.svg">
-  <img src="docs/assets/dsh-bid-qual-check-flow-light.svg" width="100%" alt="dsh-bid-qual-check flow: qualification register (JSON/YAML) → rule pack (BQ-001…BQ-008) → report (issues + skipped) → human review">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-bid-qual-check-hero-en-light.webp" width="100%" alt="dsh-bid-qual-check hero: one row of a bidder qualification checklist — the requirement cell is blank while the bidder's position, evidence and verdict are recorded; the four columns form a closed loop whose gap carries BQ-001; header BQ-006, sequence BQ-007 and the three-part pass/fail record BQ-005 are checked; BQ-004 is skipped because the verdict vocabulary is not configured; the footer reports issues 1 and skipped 1 and leaves the verdict to the reviewer">
 </picture>
 
 # dsh-bid-qual-check
@@ -41,6 +41,11 @@ dsh plugin --profile <name> add dsh-bid-qual-check
 It does not decide compliance, qualification or the validity of evidence originals; it lists differences a reviewer can point to in the material and leaves the conclusion to that reviewer.
 
 A one-minute sample ships with the repository: build, then run `node samples/quickstart/run.mjs`. The input is in `samples/quickstart/input/` and the expected result in `samples/quickstart/expected/result.json`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-bid-qual-check-flow-v5-light.svg" width="100%" alt="dsh-bid-qual-check structure: the material (JSON/YAML checklist) and the rule pack (8 rules validated on load) merge into the check engine, whose rules sit in three lanes — header BQ-006, row BQ-005/BQ-007, cell BQ-001/BQ-002/BQ-003/BQ-004/BQ-008; results leave as two channels, issues[] and skipped[] (BQ-004 skipped because values are not configured); the report goes to human review, with no eligibility finding, no originals checked and no rejection verdict">
+</picture>
 
 ## Three-step setup
 
@@ -331,7 +336,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-bid-qual-check   # refresh src/shared from ../_shared
 ```
 
-The plugin is **data-driven**: `src/model.ts` declares the table shape, the shared kit supplies the reader and the check engine, and the rule pack declares every check. README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python 3 standard library, writes SVG directly) and are safe to re-run.
+The plugin is **data-driven**: `src/model.ts` declares the table shape, the shared kit supplies the reader and the check engine, and the rule pack declares every check. README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python 3 + Pillow for the hero WebP; the SVG diagram is written directly) and are safe to re-run.
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `bid`, `qual`
 

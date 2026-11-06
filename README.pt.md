@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-dark.svg">
-  <img src="docs/assets/dsh-bid-qual-check-flow-light.svg" width="100%" alt="Fluxo do dsh-bid-qual-check: registo de qualificação (JSON/YAML) → pacote de regras (BQ-001…BQ-008) → relatório (issues + skipped) → revisão humana">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-bid-qual-check-hero-en-light.webp" width="100%" alt="Imagem do dsh-bid-qual-check: uma linha de um registo de condições de qualificação — a célula do requisito está vazia enquanto a situação do concorrente, a prova documental e o veredicto estão registados; as quatro colunas formam um ciclo fechado cuja abertura leva BQ-001; o cabeçalho BQ-006, o número de ordem BQ-007 e as três partes de uma partida eliminatória BQ-005 estão verificados; BQ-004 é ignorada por o vocabulário de veredictos não estar configurado; o rodapé indica issues 1 e skipped 1 e deixa o veredicto ao revisor">
 </picture>
 
 # dsh-bid-qual-check
@@ -41,6 +41,11 @@ dsh plugin --profile <name> add dsh-bid-qual-check
 Não decide conformidade, qualificação ou validade dos originais; apenas lista diferenças que um revisor consegue apontar no material e deixa a conclusão para esse revisor.
 
 O repositório inclui uma amostra de um minuto: após construir, execute `node samples/quickstart/run.mjs`. A entrada está em `samples/quickstart/input/` e o resultado esperado em `samples/quickstart/expected/result.json`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-bid-qual-check-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-bid-qual-check: o material (registo JSON/YAML) e o pacote de regras (8 regras validadas na carga) confluem no motor, cujas regras se distribuem em três camadas — cabeçalho BQ-006, linha BQ-005/BQ-007, célula BQ-001/BQ-002/BQ-003/BQ-004/BQ-008; o resultado sai por dois canais, issues[] e skipped[] (BQ-004 é ignorada por values não estar configurado); o relatório segue para revisão humana, sem veredicto de qualificação, sem conferir originais e sem decidir a exclusão">
+</picture>
 
 ## Instalação em três passos
 
@@ -331,7 +336,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-bid-qual-check   # atualiza src/shared a partir de ../_shared
 ```
 
-O plugin é **orientado a dados**: `src/model.ts` declara a forma da tabela, o kit compartilhado fornece o leitor e o motor de verificação, e o pacote de regras declara cada verificação. As imagens do README são geradas por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (biblioteca padrão do Python 3, escreve SVG diretamente) e podem ser executadas novamente.
+O plugin é **orientado a dados**: `src/model.ts` declara a forma da tabela, o kit compartilhado fornece o leitor e o motor de verificação, e o pacote de regras declara cada verificação. As imagens do README são geradas por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python 3 + Pillow para o hero WebP; o diagrama SVG é escrito diretamente) e podem ser executadas novamente.
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `bid`, `qual`
 

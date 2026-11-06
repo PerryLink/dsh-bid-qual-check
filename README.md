@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-dark.svg">
-  <img src="docs/assets/dsh-bid-qual-check-flow-light.svg" width="100%" alt="dsh-bid-qual-check 工作流：核对表（JSON/YAML）→ 规则库（BQ-001…BQ-008）→ 报告（issues + skipped）→ 人工复核">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-bid-qual-check-hero-zh-light.webp" width="100%" alt="dsh-bid-qual-check 配图：投标人资格条件核对表的一行——要求内容为空，投标人情况、证明材料、核对结论已留痕，四栏以箭头连成闭环，缺口处标出 BQ-001；表头 BQ-006、序号 BQ-007、否决项三栏同填 BQ-005 均已核对；BQ-004 因结论口径未配置进入 skipped；底部为 issues 1 · skipped 1，结论留给审核人">
 </picture>
 
 # dsh-bid-qual-check
@@ -41,6 +41,11 @@ dsh plugin --profile <name> add dsh-bid-qual-check
 它不判合规、不认定资格、不核验原件，只列材料内部能逐条指认的差异——结论留给审核人。
 
 本仓自带一份 1 分钟样例：构建后执行 `node samples/quickstart/run.mjs`，样例输入在 `samples/quickstart/input/`，期望结果在 `samples/quickstart/expected/result.json`。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-bid-qual-check-flow-v5-light.svg" width="100%" alt="dsh-bid-qual-check 结构图：材料（JSON/YAML 核对表）与规则库（8 条，加载期校验）两源汇入检查引擎，规则分三层——表头 BQ-006、行 BQ-005/BQ-007、栏 BQ-001/BQ-002/BQ-003/BQ-004/BQ-008；结果分为 issues[] 与 skipped[] 两条通道，BQ-004 因 values 未配置进 skipped；报告交给人工复核，不判资格、不核原件、不判否决">
+</picture>
 
 ## 三步上手
 
@@ -314,7 +319,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-bid-qual-check   # 从 ../_shared 刷新 src/shared
 ```
 
-插件是**数据驱动**的：`src/model.ts` 声明表格形状，共享套件提供读取与检查引擎，规则包声明每条检查。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python 3 标准库，直接写 SVG），可重复执行。
+插件是**数据驱动**的：`src/model.ts` 声明表格形状，共享套件提供读取与检查引擎，规则包声明每条检查。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python 3 + Pillow 渲染 hero WebP，SVG 结构图直接手写），可重复执行。
 
 Topics：`dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `bid`, `qual`
 

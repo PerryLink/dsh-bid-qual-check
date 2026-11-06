@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="fig-title fig-desc">
+<title id="fig-title">dsh-bid-qual-check 结构：两条输入、三层检查、两条报告通道</title>
+<desc id="fig-desc">材料（JSON/YAML 核对表）与规则库（8 条，加载期校验）汇入检查引擎；规则分三层——表头 BQ-006，行 BQ-005/BQ-007，栏 BQ-001/BQ-002/BQ-003/BQ-004/BQ-008；结果分成 issues[] 与 skipped[] 两条通道，BQ-004 因 values 未配置进入 skipped；报告交给人工复核，不判资格、不核原件、不判否决。</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0.30" y2="1"><stop offset="0" stop-color="#131a2a"/><stop offset="1" stop-color="#0c1016"/></linearGradient>
+<filter id="soft" x="-8%" y="-14%" width="116%" height="140%"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#000000" flood-opacity="0.45"/></filter>
+<marker id="arr" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="6.4" markerHeight="6.4" orient="auto-start-reverse"><path d="M0 1.8 L9 5 L0 8.2 z" fill="#8496f5"/></marker>
+<marker id="arrWarn" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="6.4" markerHeight="6.4" orient="auto-start-reverse"><path d="M0 1.8 L9 5 L0 8.2 z" fill="#f0b45f"/></marker>
+</defs>
+<rect width="1100" height="660" fill="url(#bg)"/>
+<g opacity="0.16">
+<circle cx="1050" cy="636" r="150" fill="none" stroke="#8496f5" stroke-width="1.6"/>
+<circle cx="1050" cy="636" r="186" fill="none" stroke="#8496f5" stroke-width="1.6"/>
+<circle cx="1050" cy="636" r="222" fill="none" stroke="#8496f5" stroke-width="1.6"/>
+</g>
+<text x="44" y="52" fill="#e9edf9" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="26" font-weight="700">dsh-bid-qual-check</text>
+<text x="44" y="80" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.2">8 条规则分三层读同一张核对表：表头 1、行 2、栏 5；能执行的出 issues，不能执行的出 skipped。</text>
+<rect x="926.82" y="30" width="129.18" height="26" rx="13" fill="#232c4a"/><text x="936.82" y="46.2" fill="#8496f5" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">规则包 2026.1 · 8 条</text>
+<rect x="44" y="100" width="560" height="146" rx="18" fill="#1a2233" stroke="#2b3650" stroke-width="1.2" filter="url(#soft)"/>
+<text x="64" y="127" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.6" font-weight="700">材料 · 投标人资格条件核对表</text>
+<rect x="454.94" y="106" width="123.06" height="24" rx="12" fill="#232c4a"/><text x="463.94" y="121.2" fill="#8496f5" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">JSON / YAML · 只读</text>
+<text x="64" y="150" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">项目 某某工程施工招标 · 招标编号 ZB-2026-018 · 投标人 某某建设有限公司</text>
+<text x="64" y="179" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">序号</text>
+<text x="108" y="179" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">要求内容</text>
+<text x="236" y="179" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">投标人情况</text>
+<text x="372" y="179" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">证明材料</text>
+<text x="490" y="179" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">核对结论</text>
+<rect x="56" y="186" width="536" height="26" rx="7" fill="#151c2c"/>
+<text x="64" y="203" fill="#e9edf9" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">1</text>
+<text x="108" y="203" fill="#f0b45f" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">（空）</text>
+<text x="236" y="203" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">持有二级资质</text>
+<text x="372" y="203" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">资质证书 p12</text>
+<text x="490" y="203" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">符合</text>
+<text x="64" y="232" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">列名忽略大小写 / 空白 / 下划线；报告保留材料原列名</text>
+<rect x="624" y="100" width="432" height="146" rx="18" fill="#1a2233" stroke="#2b3650" stroke-width="1.2" filter="url(#soft)"/>
+<text x="644" y="127" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.6" font-weight="700">规则库 · bid-qual-check.yaml</text>
+<rect x="955.35" y="106" width="74.65" height="24" rx="12" fill="#232c4a"/><text x="964.35" y="121.2" fill="#8496f5" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">加载期校验</text>
+<text x="644" y="152" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">· 8 条规则；id 唯一，excerpt ≥ 8 字</text>
+<text x="644" y="173" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">· severity 上限：direct→error · 原则→warn · 本机构→info</text>
+<text x="644" y="194" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">· 规则是数据：换 YAML 即换规则集，报告带版本 2026.1</text>
+<text x="644" y="215" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">· 加载失败直接抛错，绝不静默回退到错误规则库</text>
+<text x="644" y="238" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">BQ-001 … BQ-008 · 规则库版本随报告返回</text>
+<path d="M324 246 L324 259" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<path d="M320 255 L324 260 L328 255" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M840 246 L840 259" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<path d="M836 255 L840 260 L844 255" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="44" y="262" width="1012" height="274" rx="18" fill="#1a2233" stroke="#2b3650" stroke-width="1.2" filter="url(#soft)"/>
+<text x="64" y="288" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.6" font-weight="700">检查引擎 · runTableCheck</text>
+<text x="64" y="307" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">列名归一 → 逐条执行；前置缺失的规则进 skipped 并写明原因</text>
+<rect x="961.53" y="274" width="68.47" height="24" rx="12" fill="#232c4a"/><text x="970.53" y="289.2" fill="#8496f5" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">8 条 · 3 层</text>
+<rect x="60" y="326" width="980" height="44" rx="10" fill="#151c2c"/>
+<text x="74" y="346" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700">表头</text>
+<text x="74" y="362" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">1 条</text>
+<rect x="150" y="332" width="878" height="32" rx="9" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<rect x="162" y="339" width="51.08" height="18" rx="9" fill="#1c2f26"/><text x="169" y="351.2" fill="#6fd39a" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-006</text>
+<text x="230" y="352" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">表头声明 project · bidder；缺项按缺失字段报出</text>
+<text x="1016" y="352" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" text-anchor="end">headerPresence</text>
+<rect x="60" y="376" width="980" height="44" rx="10" fill="#151c2c"/>
+<text x="74" y="396" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700">行</text>
+<text x="74" y="412" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">2 条</text>
+<rect x="150" y="382" width="436" height="32" rx="9" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<rect x="162" y="389" width="51.08" height="18" rx="9" fill="#3a2d1c"/><text x="169" y="401.2" fill="#f0b45f" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-005</text>
+<text x="230" y="402" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">否决项 = 是 → actual · evidence · verdict 三栏同填</text>
+<rect x="596" y="382" width="432" height="32" rx="9" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<rect x="608" y="389" width="51.08" height="18" rx="9" fill="#3a2d1c"/><text x="615" y="401.2" fill="#f0b45f" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-007</text>
+<text x="676" y="402" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">序号唯一（忽略空白）；整表无序号 → skipped</text>
+<text x="1016" y="402" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" text-anchor="end">unique</text>
+<rect x="60" y="426" width="980" height="104" rx="10" fill="#151c2c"/>
+<text x="74" y="446" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700">栏</text>
+<text x="74" y="462" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">5 条</text>
+<rect x="150" y="434" width="216" height="90" rx="11" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<text x="162" y="470" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.2" font-weight="700">要求内容</text>
+<text x="222" y="470" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11">required</text>
+<text x="162" y="492" fill="#8496f5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-001</text>
+<text x="204" y="492" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">至少填一项</text>
+<text x="162" y="509" fill="#8496f5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-008</text>
+<text x="204" y="509" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">无占位符</text>
+<rect x="374" y="434" width="216" height="90" rx="11" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<text x="386" y="470" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.2" font-weight="700">投标人情况</text>
+<text x="459" y="470" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11">actual</text>
+<text x="386" y="492" fill="#8496f5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-002</text>
+<text x="428" y="492" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">是否记录</text>
+<text x="386" y="509" fill="#f0b45f" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">空栏 → 逐行报</text>
+<rect x="598" y="434" width="216" height="90" rx="11" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<text x="610" y="470" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.2" font-weight="700">证明材料</text>
+<text x="670" y="470" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11">evidence</text>
+<text x="610" y="492" fill="#8496f5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-003</text>
+<text x="652" y="492" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">是否填写</text>
+<text x="610" y="509" fill="#f0b45f" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">空栏 → 逐行报</text>
+<rect x="822" y="434" width="216" height="90" rx="11" fill="#1a2233" stroke="#2b3650" stroke-width="1.0"/>
+<text x="834" y="470" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.2" font-weight="700">核对结论</text>
+<text x="894" y="470" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11">verdict</text>
+<text x="834" y="492" fill="#8496f5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">BQ-004</text>
+<text x="876" y="492" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">是否在册</text>
+<text x="834" y="509" fill="#f0b45f" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">values 空 → skipped</text>
+<path d="M550 536 L550 546" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+<path d="M546 542 L550 547 L554 542" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="44" y="548" width="778" height="82" rx="18" fill="#1a2233" stroke="#2b3650" stroke-width="1.2" filter="url(#soft)"/>
+<text x="64" y="568" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700">报告 · buildView</text>
+<text x="802" y="568" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" text-anchor="end">markdown + reportJson</text>
+<text x="64" y="588" fill="#8496f5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" font-weight="700">issues[] 1</text>
+<text x="132" y="588" fill="#7e8aab" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">· warn 1 · error 0 · info 0</text>
+<text x="802" y="588" fill="#8496f5" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" text-anchor="end">BQ-001 · 第 1 行 · required</text>
+<text x="64" y="606" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">required、criterion 都为空 → 补填资格条件与要求内容；不判断该条件是否应当设置</text>
+<text x="64" y="624" fill="#f0b45f" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">skipped[] 1 · BQ-004：values 未配置 —— 「verdict」口径由本机构规定</text>
+<line x1="830" y1="552" x2="830" y2="624" stroke="#2b3650" stroke-width="1.4" stroke-dasharray="4 5"/>
+<path d="M824 598 L834 598" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+<path d="M830 594 L835 598 L830 602" fill="none" stroke="#8496f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="838" y="548" width="218" height="82" rx="18" fill="#202a40" stroke="#2b3650" stroke-width="1.2" filter="url(#soft)"/>
+<text x="856" y="568" fill="#e9edf9" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700">人工复核</text>
+<text x="856" y="588" fill="#6fd39a" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="700">结论不在报告里</text>
+<text x="856" y="606" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">不判资格 · 不核原件</text>
+<text x="856" y="624" fill="#9aa6c4" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11">不判否决</text>
+<text x="44" y="648" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11">network: none · model: none · writes: none</text>
+<text x="1056" y="648" fill="#7e8aab" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="11" text-anchor="end">samples/quickstart · rules/bid-qual-check.yaml · 2026.1</text>
+</svg>

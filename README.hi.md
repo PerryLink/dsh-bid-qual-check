@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-dark.svg">
-  <img src="docs/assets/dsh-bid-qual-check-flow-light.svg" width="100%" alt="dsh-bid-qual-check प्रवाह: अर्हता रजिस्टर (JSON/YAML) → नियम-पैक (BQ-001…BQ-008) → रिपोर्ट (issues + skipped) → मानवीय समीक्षा">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-bid-qual-check-hero-en-light.webp" width="100%" alt="dsh-bid-qual-check चित्र: अर्हता शर्तों के रजिस्टर की एक पंक्ति — आवश्यकता का खाना खाली है जबकि प्रतिभागी की स्थिति, प्रमाण और निर्णय दर्ज हैं; चारों कॉलम एक बंद चक्र बनाते हैं जिसका अंतर BQ-001 दिखाता है; हेडर BQ-006, क्रमांक BQ-007 और निर्णायक मद के तीनों भाग BQ-005 जाँचे गए हैं; BQ-004 छोड़ा गया है क्योंकि निर्णय-शब्दावली कॉन्फ़िगर नहीं है; नीचे issues 1 और skipped 1 हैं, निर्णय समीक्षक पर छोड़ा गया है">
 </picture>
 
 # dsh-bid-qual-check
@@ -41,6 +41,11 @@ dsh plugin --profile <name> add dsh-bid-qual-check
 यह अनुपालन, अर्हता या मूल दस्तावेज़ों की वैधता का निर्णय नहीं करता; केवल वे अंतर सूचीबद्ध करता है जिन्हें समीक्षक सामग्री में इंगित कर सके, और निष्कर्ष उसी समीक्षक पर छोड़ता है।
 
 रिपॉज़िटरी में एक मिनट की नमूना शामिल है: बिल्ड के बाद `node samples/quickstart/run.mjs` चलाएँ। इनपुट `samples/quickstart/input/` में और अपेक्षित परिणाम `samples/quickstart/expected/result.json` में है।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-bid-qual-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-bid-qual-check-flow-v5-light.svg" width="100%" alt="dsh-bid-qual-check संरचना: सामग्री (JSON/YAML रजिस्टर) और नियम-पैक (लोड पर सत्यापित 8 नियम) जाँच इंजन में मिलते हैं; नियम तीन परतों में हैं — हेडर BQ-006, पंक्ति BQ-005/BQ-007, सेल BQ-001/BQ-002/BQ-003/BQ-004/BQ-008; परिणाम दो चैनलों से निकलता है, issues[] और skipped[] (BQ-004 छोड़ा गया क्योंकि values कॉन्फ़िगर नहीं है); रिपोर्ट मानव समीक्षा के पास जाती है — अर्हता का निर्णय नहीं, मूल दस्तावेज़ों की जाँच नहीं, बहिष्कार का निर्णय नहीं">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -331,7 +336,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-bid-qual-check   # ../_shared से src/shared ताज़ा करें
 ```
 
-प्लगइन **डेटा-चालित** है: `src/model.ts` तालिका का आकार घोषित करता है, साझा किट पाठक और जाँच इंजन देता है, और नियम-पैक हर जाँच घोषित करता है। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) से प्रोग्रामेटिक रूप से बनती हैं (Python 3 मानक लाइब्रेरी, सीधे SVG लिखता है) और दोबारा चलाई जा सकती हैं।
+प्लगइन **डेटा-चालित** है: `src/model.ts` तालिका का आकार घोषित करता है, साझा किट पाठक और जाँच इंजन देता है, और नियम-पैक हर जाँच घोषित करता है। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) से प्रोग्रामेटिक रूप से बनती हैं (hero WebP के लिए Python 3 + Pillow; SVG आरेख सीधे लिखा जाता है) और दोबारा चलाई जा सकती हैं।
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `bid`, `qual`
 
