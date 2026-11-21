@@ -47,6 +47,11 @@ O repositório inclui uma amostra de um minuto: após construir, execute `node s
   <img src="docs/assets/dsh-bid-qual-check-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-bid-qual-check: o material (registo JSON/YAML) e o pacote de regras (8 regras validadas na carga) confluem no motor, cujas regras se distribuem em três camadas — cabeçalho BQ-006, linha BQ-005/BQ-007, célula BQ-001/BQ-002/BQ-003/BQ-004/BQ-008; o resultado sai por dois canais, issues[] e skipped[] (BQ-004 é ignorada por values não estar configurado); o relatório segue para revisão humana, sem veredicto de qualificação, sem conferir originais e sem decidir a exclusão">
 </picture>
 
+![dsh-bid-qual-check: execução real de terminal](docs/assets/dsh-bid-qual-check-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 ## Instalação em três passos
 
 1. **Instalar** (escolha um canal):

@@ -47,6 +47,11 @@ A one-minute sample ships with the repository: build, then run `node samples/qui
   <img src="docs/assets/dsh-bid-qual-check-flow-v5-light.svg" width="100%" alt="dsh-bid-qual-check structure: the material (JSON/YAML checklist) and the rule pack (8 rules validated on load) merge into the check engine, whose rules sit in three lanes — header BQ-006, row BQ-005/BQ-007, cell BQ-001/BQ-002/BQ-003/BQ-004/BQ-008; results leave as two channels, issues[] and skipped[] (BQ-004 skipped because values are not configured); the report goes to human review, with no eligibility finding, no originals checked and no rejection verdict">
 </picture>
 
+![dsh-bid-qual-check: real terminal run](docs/assets/dsh-bid-qual-check-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
+
 ## Three-step setup
 
 1. **Install** (pick one channel):
