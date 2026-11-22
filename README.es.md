@@ -11,6 +11,8 @@
 
 Para especialistas en licitaciones, agentes de contratación y revisores de cualificación: reciba un registro JSON/YAML y obtenga una lista de diferencias revisable línea por línea; el original no se modifica y no se emite un veredicto de cumplimiento.
 
+Última verificación: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalación](#instalación-en-tres-pasos) · [Configuración](#configuración) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -51,7 +53,6 @@ El repositorio incluye una muestra de un minuto: tras construir, ejecute `node s
 
 *Repetición animada de una ejecución real registrada en este repositorio.*
 
-
 ## Instalación en tres pasos
 
 1. **Instalar** (elija un canal):
@@ -59,7 +60,7 @@ El repositorio incluye una muestra de un minuto: tras construir, ejecute `node s
    ```sh
    # canal git (último main; equivale a git+https://github.com/PerryLink/dsh-bid-qual-check.git)
    dsh plugin --profile <name> add github:PerryLink/dsh-bid-qual-check
-   # canal npm (versión publicada 0.2.12)
+   # canal npm (versión publicada 0.2.14)
    dsh plugin --profile <name> add dsh-bid-qual-check
    # canal tarball: tras pnpm pack en este repositorio
    dsh plugin --profile <name> add ./dsh-bid-qual-check-<version>.tgz
@@ -315,7 +316,7 @@ Todo lo anterior puede comprobarse directamente en `src/index.ts` y `cordis.patc
 ## Solución de problemas
 
 - **El plugin se instala pero la herramienta no aparece.** Compruebe que `main` resuelve a `lib/index.mjs` y que `pnpm run build` lo generó; un `main` erróneo hace que el cargador omita la entrada en silencio.
-- **`dsh plugin add` rechaza el paquete como incompatible.** El rango de peers cubre `0.1.x` y `0.2.x`; si su runtime queda fuera, conceda una exención explícita: `dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.12 --dsh-version <runtime> --accept-risk`.
+- **`dsh plugin add` rechaza el paquete como incompatible.** El rango de peers cubre `0.1.x` y `0.2.x`; si su runtime queda fuera, conceda una exención explícita: `dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.14 --dsh-version <runtime> --accept-risk`.
 - **Una regla no se ejecutó.** Lea el arreglo `skipped`; nombra el id y el motivo.
 - **`check` informa `manifest-peers` como fallo.** El verificador estático compara con un rango de peers fijo anterior a la línea 0.2. El runtime aplica la compatibilidad al instalar, así que el rango declarado es el correcto; es un problema conocido de `dsh-plugin-dev`.
 - **`BQ-002` salta en una condición que considero evidente.** Una celda de situación real vacía significa «no comprobado», el único estado que un registro de cualificación no debe tener. Registre la situación, aunque sea obvia.

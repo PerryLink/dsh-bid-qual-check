@@ -11,6 +11,8 @@
 
 निविदा विशेषज्ञों, टेंडर एजेंटों और अर्हता समीक्षकों के लिए: JSON/YAML रजिस्टर दें और पंक्ति-दर-पंक्ति समीक्षा योग्य अंतर-सूची पाएँ; मूल कभी नहीं बदला जाता और अनुपालन का कोई निर्णय नहीं दिया जाता।
 
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [इंस्टॉल](#तीन-चरणों-में-शुरुआत) · [कॉन्फ़िगरेशन](#कॉन्फ़िगरेशन) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -51,7 +53,6 @@ dsh plugin --profile <name> add dsh-bid-qual-check
 
 *इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
 
-
 ## तीन चरणों में शुरुआत
 
 1. **इंस्टॉल करें** (एक चैनल चुनें):
@@ -59,7 +60,7 @@ dsh plugin --profile <name> add dsh-bid-qual-check
    ```sh
    # git चैनल (नवीनतम main; git+https://github.com/PerryLink/dsh-bid-qual-check.git के बराबर)
    dsh plugin --profile <name> add github:PerryLink/dsh-bid-qual-check
-   # npm चैनल (प्रकाशित संस्करण 0.2.12)
+   # npm चैनल (प्रकाशित संस्करण 0.2.14)
    dsh plugin --profile <name> add dsh-bid-qual-check
    # tarball चैनल: इस रिपॉज़िटरी में pnpm pack के बाद
    dsh plugin --profile <name> add ./dsh-bid-qual-check-<version>.tgz
@@ -315,7 +316,7 @@ rows:
 ## समस्या निवारण
 
 - **प्लगइन इंस्टॉल हो गया पर टूल दिखता नहीं।** जाँचें कि `main` `lib/index.mjs` पर जाता है और `pnpm run build` ने उसे बनाया है; गलत `main` लोडर को प्रविष्टि चुपचाप छोड़ने देता है।
-- **`dsh plugin add` असंगत बताकर मना करता है।** peer रेंज `0.1.x` और `0.2.x` दोनों को कवर करती है; बाहर होने पर स्पष्ट छूट दें: `dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.12 --dsh-version <runtime> --accept-risk`।
+- **`dsh plugin add` असंगत बताकर मना करता है।** peer रेंज `0.1.x` और `0.2.x` दोनों को कवर करती है; बाहर होने पर स्पष्ट छूट दें: `dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.14 --dsh-version <runtime> --accept-risk`।
 - **कोई नियम नहीं चला।** `skipped` सरणी देखें; वह नियम id और कारण बताती है।
 - **`check` में `manifest-peers` विफल दिखता है।** यह स्थिर जाँचकर्ता 0.2 लाइन से पहले के हार्डकोडेड peer रेंज से तुलना करता है; रनटाइम इंस्टॉल के समय अनुकूलता लागू करता है, इसलिए घोषित रेंज सही है; यह `dsh-plugin-dev` की ज्ञात अपस्ट्रीम समस्या है।
 - **`BQ-002` ऐसी शर्त पर भी दिखता है जो मुझे स्पष्ट लगती है।** खाली वास्तविक-स्थिति कोष्ठ का अर्थ "जाँचा नहीं गया" है — अर्हता रजिस्टर की वह एकमात्र अवस्था जो कभी नहीं होनी चाहिए। स्थिति दर्ज करें, भले ही स्पष्ट हो।

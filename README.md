@@ -11,6 +11,8 @@
 
 面向投标专员、招标代理与资格审查辅助人员：输入一份 JSON/YAML 核对表，拿回一份能逐条复核的差异清单——不改原件、不判合规、不下结论。
 
+最近一次核验：DeepSeek Harness `dsh-v0.2.3-alpha.1`（2026-11-22）。
+
 [安装](#三步上手) · [配置](#配置) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -58,7 +60,7 @@ dsh plugin --profile <name> add dsh-bid-qual-check
    ```sh
    # git 通道（最新 main；等价于 git+https://github.com/PerryLink/dsh-bid-qual-check.git）
    dsh plugin --profile <name> add github:PerryLink/dsh-bid-qual-check
-   # npm 通道（已发布版本 0.2.12）
+   # npm 通道（已发布版本 0.2.14）
    dsh plugin --profile <name> add dsh-bid-qual-check
    # tarball 通道：本仓库 pnpm pack 后
    dsh plugin --profile <name> add ./dsh-bid-qual-check-<version>.tgz
@@ -297,7 +299,7 @@ rows:
 ## 疑难排查
 
 - **插件装上了但工具不出现。** 确认 `main` 指向 `lib/index.mjs` 且 `pnpm run build` 已生成该文件；`main` 写错会让加载器静默跳过该条目。
-- **`dsh plugin add` 报版本不兼容。** peer 范围覆盖 `0.1.x` 与 `0.2.x`；若运行时在其之外，可显式豁免：`dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.12 --dsh-version <runtime> --accept-risk`。
+- **`dsh plugin add` 报版本不兼容。** peer 范围覆盖 `0.1.x` 与 `0.2.x`；若运行时在其之外，可显式豁免：`dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.14 --dsh-version <runtime> --accept-risk`。
 - **某条规则没有执行。** 查看 `skipped` 数组，其中写明了规则 id 与原因。
 - **`check` 报 `manifest-peers` 失败。** 静态检查器比对的是一份早于 0.2 世代的硬编码 peer 范围；安装期的 peer 校验以运行时为准。这是 `dsh-plugin-dev` 的已知上游问题。
 - **`BQ-002` 对看似显然的条件也报。** 空白「投标人情况」意味着「没核对」——这正是核对表最不该出现的状态；即使条件显而易见，也请把那句话写进栏里。

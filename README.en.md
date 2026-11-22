@@ -11,6 +11,8 @@
 
 For bid specialists, tender agents and qualification reviewers: hand it a JSON/YAML register and get back a difference list you can review line by line — the original is never modified, no compliance verdict is issued.
 
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Install](#three-step-setup) · [Configuration](#configuration) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -51,7 +53,6 @@ A one-minute sample ships with the repository: build, then run `node samples/qui
 
 *Animated replay of a real run recorded in this repository.*
 
-
 ## Three-step setup
 
 1. **Install** (pick one channel):
@@ -59,7 +60,7 @@ A one-minute sample ships with the repository: build, then run `node samples/qui
    ```sh
    # git channel (latest main; equivalent to git+https://github.com/PerryLink/dsh-bid-qual-check.git)
    dsh plugin --profile <name> add github:PerryLink/dsh-bid-qual-check
-   # npm channel (published release 0.2.12)
+   # npm channel (published release 0.2.14)
    dsh plugin --profile <name> add dsh-bid-qual-check
    # tarball channel: pnpm pack in this repo, then
    dsh plugin --profile <name> add ./dsh-bid-qual-check-<version>.tgz
@@ -315,7 +316,7 @@ All of the above can be checked directly in `src/index.ts` and `cordis.patch.yml
 ## Troubleshooting
 
 - **The plugin installs but the tool never appears.** Check that `main` resolves to `lib/index.mjs` and that `pnpm run build` produced it; a wrong `main` makes the loader skip the entry silently.
-- **`dsh plugin add` refuses the package as incompatible.** The peer range covers `0.1.x` and `0.2.x`; if your runtime sits outside it, grant an explicit exemption: `dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.12 --dsh-version <runtime> --accept-risk`.
+- **`dsh plugin add` refuses the package as incompatible.** The peer range covers `0.1.x` and `0.2.x`; if your runtime sits outside it, grant an explicit exemption: `dsh plugin --profile <name> allow-version dsh-bid-qual-check@0.2.14 --dsh-version <runtime> --accept-risk`.
 - **A rule did not run.** Read the `skipped` array; it names the rule id and the reason.
 - **`check` reports `manifest-peers` as failed.** The static checker compares against a hard-coded peer range that predates the 0.2 line. The runtime enforces peer compatibility at install time, so the declared range is the correct one; this is a known upstream issue in `dsh-plugin-dev`.
 - **`BQ-002` fires on a condition I consider self-evident.** A blank actual-position cell means "not checked" — the one state a qualification register must never be in. Record the position, even if it is obvious.
