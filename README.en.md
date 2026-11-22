@@ -7,6 +7,8 @@
 
 # dsh-bid-qual-check
 
+Current version `0.2.15`.
+
 **Walk a bidder qualification condition register row by row and point at exactly which row and column do not close the loop.**
 
 For bid specialists, tender agents and qualification reviewers: hand it a JSON/YAML register and get back a difference list you can review line by line — the original is never modified, no compliance verdict is issued.

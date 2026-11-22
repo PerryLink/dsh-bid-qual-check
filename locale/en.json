@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Bid qualification check",
-    "description": "投标人资格条件核对（按资格条件与证明材料核对逐条响应，仅提示差异，不作出定性结论）"
+    "description": "Walk a bidder qualification condition register row by row and point at exactly which row and column do not close the loop."
   }
 }
